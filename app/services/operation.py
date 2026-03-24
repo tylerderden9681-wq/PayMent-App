@@ -4,6 +4,7 @@ from app.repository.wallet import (is_wallet_exist,
                                    add_income, 
                                    get_wallet_balance_by_name, 
                                    add_extend)
+from app.database import SessionLocal
 
 
 def income_money(operation: OperationSchema):
@@ -12,19 +13,25 @@ def income_money(operation: OperationSchema):
     2) Проверяем, что сумма положительная
     3) Добавляем доход к балансу кошелька
     4) Возвращаем сообщение об успешной транзакции"""
+    db = SessionLocal()
 
-    if not is_wallet_exist(operation.wallet_name):
-        raise HTTPException(status_code=404, detail=f'Wallet {operation.wallet_name} not found in DB')
+    try:
+        if not is_wallet_exist(db, operation.wallet_name):
+            raise HTTPException(status_code=404, detail=f'Wallet {operation.wallet_name} not found in DB')
     
-    new_balance = add_income(operation.wallet_name, operation.amount)
+        wallet = add_income(db, operation.wallet_name, operation.amount)
 
-    return {'ok': True, 'details': {
-        'msg': 'The traksaktion is successfully',
-        'income': operation.amount,
-        'new_balance': new_balance,
-        'description': operation.description,
+        db.commit()
+
+        return {'ok': True, 'details': {
+            'msg': 'The traksaktion is successfully',
+            'income': operation.amount,
+            'new_balance': wallet.balance,
+            'description': operation.description,
+            }
         }
-    }
+    finally: 
+        db.close()
 
 
 def expense_money(operation: OperationSchema):
@@ -35,21 +42,27 @@ def expense_money(operation: OperationSchema):
     4) Убавляем переданную сумму из баланса кошелька
     5) Возвращаем сообщение об успешной транзакции"""
 
-    if not is_wallet_exist(operation.wallet_name):
-        raise HTTPException(status_code=404, detail=f'Wallet {operation.wallet_name} is not defined')
+    db = SessionLocal()
+    try:
+        if not is_wallet_exist(db, operation.wallet_name):
+            raise HTTPException(status_code=404, detail=f'Wallet {operation.wallet_name} is not defined')
     
-    balance = get_wallet_balance_by_name(operation.wallet_name)
+        wallet = get_wallet_balance_by_name(db, operation.wallet_name)
 
-    if balance < operation.amount:
-        raise HTTPException(status_code=400, 
-                            detail=f'Недостаточно средств. Доступные деньги: {balance}')
+        if wallet.balance < operation.amount:
+            raise HTTPException(status_code=400, 
+                            detail=f'Недостаточно средств. Доступные деньги: {wallet.balance}')
     
-    new_balance = add_extend(operation.wallet_name, operation.amount)
+        new_balance = add_extend(db, operation.wallet_name, operation.amount)
 
-    return {'ok': True, 'details': {
-        'msg': 'The traksaktion is successfully',
-        'expense': operation.amount,
-        'new_balance': new_balance,
-        'description': operation.description,
+        db.commit()
+        
+        return {'ok': True, 'details': {
+            'msg': 'The traksaktion is successfully',
+            'expense': operation.amount,
+            'new_balance': new_balance,
+            'description': operation.description,
+            }
         }
-    }
+    finally: 
+        db.close()
