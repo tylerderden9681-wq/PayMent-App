@@ -56,3 +56,20 @@ class CreateWalletSchema(BaseModel):
             raise ValueError("Initial balanse shouldn't be negative")
         
         return value
+    
+
+# Создадим специальную Pydantic-схему для пользователя:
+class UserAddSchema(BaseModel):
+    login: str = Field(..., max_length=127)
+
+
+class UserResponceSchema(UserAddSchema):
+    # Так как мы унаследовались от схемы UserAddSchema, то поле login прописывать повторно не 
+    # требуется, остается лишь указать id:
+
+    # Еще одна задача: проще превращать модели SQLAlchemy в Pydantic. Для этого используется 
+    # "трюк", который сделали внутри Pydantic-моделей. Он называется model_config 
+    # ( - это класс-атрибут, который мы можем задать чтобы сконфигурировать нашу модель)
+    model_config = {'from_attributes': True}  # Это позволит нам превратить SQLAlchemy-модель в Pydantic-схему
+
+    id: int 

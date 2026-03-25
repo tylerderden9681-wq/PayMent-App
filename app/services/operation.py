@@ -7,18 +7,20 @@ from app.repository.wallet import (is_wallet_exist,
 from app.database import SessionLocal
 from sqlalchemy.orm import Session
 
+from app.models import User
 
-def income_money(db: Session, operation: OperationSchema):
+
+def income_money(db: Session, current_user: User, operation: OperationSchema):
     """Логика такая:
     1) Проверяем, существует ли кошелёк
     2) Проверяем, что сумма положительная
     3) Добавляем доход к балансу кошелька
     4) Возвращаем сообщение об успешной транзакции"""
     
-    if not is_wallet_exist(db, operation.wallet_name):
+    if not is_wallet_exist(db, current_user.id, operation.wallet_name):
         raise HTTPException(status_code=404, detail=f'Wallet {operation.wallet_name} not found in DB')
     
-    wallet = add_income(db, operation.wallet_name, operation.amount)
+    wallet = add_income(db, current_user.id, operation.wallet_name, operation.amount)
 
     db.commit()
 
@@ -31,7 +33,7 @@ def income_money(db: Session, operation: OperationSchema):
     }
 
 
-def expense_money(db: Session, operation: OperationSchema):
+def expense_money(db: Session, current_user: User, operation: OperationSchema):
     """Логика такая:
     1) Проверяем, существует ли кошелёк
     2) Проверяем, что сумма положительная (вычитаемое)
@@ -40,16 +42,16 @@ def expense_money(db: Session, operation: OperationSchema):
     5) Возвращаем сообщение об успешной транзакции"""
 
     
-    if not is_wallet_exist(db, operation.wallet_name):
+    if not is_wallet_exist(db, current_user.id, operation.wallet_name):
         raise HTTPException(status_code=404, detail=f'Wallet {operation.wallet_name} is not defined')
     
-    wallet = get_wallet_balance_by_name(db, operation.wallet_name)
+    wallet = get_wallet_balance_by_name(db, current_user.id, operation.wallet_name)
 
     if wallet.balance < operation.amount:
         raise HTTPException(status_code=400, 
                             detail=f'Недостаточно средств. Доступные деньги: {wallet.balance}')
     
-    new_balance = add_extend(db, operation.wallet_name, operation.amount)
+    new_balance = add_extend(db, current_user.id, operation.wallet_name, operation.amount)
 
     db.commit()
         
