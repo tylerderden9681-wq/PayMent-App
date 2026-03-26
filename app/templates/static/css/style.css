@@ -1,0 +1,1358 @@
+@font-face {
+    font-family: 'Gilroy';           /* имя, которое будете использовать */
+    src: url('./gilroy-bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Сброс отступов */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Gilroy;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Сама полоска */
+.navbar {
+    display: flex;
+    justify-content: space-between;  /* раздвигает логотип и кнопки */
+    align-items: center;             /* выравнивает по вертикали */
+    background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Логотип */
+.navbar__logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Контейнер для кнопок */
+.navbar__buttons {
+    display: flex;
+    gap: 1rem;  /* расстояние между кнопками */
+}
+
+/* Общие стили для кнопок */
+.btn {
+    padding: 0.5rem 1.2rem;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: all 0.5s ease;
+}
+
+/* Кнопка "Войти" */
+.btn--login {
+    background: transparent;
+    color: black;
+    border: 2px solid #d9d9d9;
+}
+
+.btn--login:hover {
+    background: #4060FF;
+    color: white;
+}
+
+/* Кнопка "Регистрация" */
+.btn--register {
+    background: linear-gradient(135deg, #4060FF, #10C4F2);
+    color: white;
+    border: 2px solid #d9d9d9;
+}
+
+.btn--register:hover {
+    background: linear-gradient(135deg, #10C4F2, #4060FF);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+
+/* Контейнер для формы */
+.register-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Сама форма */
+.register-form {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    transition: transform 0.3s ease;
+}
+
+.register-form:hover {
+    transform: translateY(-5px);
+}
+
+/* Заголовок */
+.register-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.register-form .subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+/* Поля ввода */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Кнопка регистрации */
+.register-btn {
+    width: 100%;
+    padding: 12px;
+    background: #4060FF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.register-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Ссылка на вход */
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.login-link a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .register-form {
+        padding: 30px 20px;
+    }
+    
+    .register-form h2 {
+        font-size: 24px;
+    }
+}
+
+
+/* Подвал */
+.footer {
+    background-color: #F2F2F2;
+    border-top: 2px solid #667eea;
+    padding: 40px 20px;
+    margin-top: auto;
+}
+
+.footer__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Информация о компании */
+.footer__info {
+    text-align: left;
+}
+
+.footer__copyright {
+    color: black;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.footer__company {
+    color: #888;
+    font-size: 12px;
+}
+
+/* Ссылки на соцсети */
+.footer__links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.footer__link:hover {
+    color: #667eea;
+    transform: translateY(-2px);
+}
+
+.footer__icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.footer__link:hover .footer__icon {
+    transform: scale(1.1);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .footer__content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer__info {
+        text-align: center;
+    }
+    
+    .footer__links {
+        justify-content: center;
+    }
+}
+
+
+.about-card {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-inner {
+    background: white;
+    border-radius: 40px;
+    padding: 50px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 48px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 280px;
+}
+
+.about-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 24px;
+}
+
+.about-details {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.detail-icon {
+    font-size: 32px;
+    min-width: 48px;
+}
+
+.detail-item h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.detail-item p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 280px;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .card-inner {
+        padding: 30px 20px;
+    }
+    
+    .about-description {
+        font-size: 16px;
+    }
+    
+    .about-content {
+        gap: 40px;
+    }
+}
+
+/* Блок "Как это работает" */
+.how-it-works {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.how-it-works .card-inner {
+    background: white;
+    border-radius: 40px;
+    padding: 50px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.how-it-works .card-inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 48px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.step {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    padding: 30px 20px;
+    background: #f9fafc;
+    border-radius: 24px;
+    transition: all 0.3s ease;
+}
+
+.step:hover {
+    transform: translateY(-8px);
+    background: #ffffff;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.step-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.step-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.step-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .how-it-works {
+        padding: 40px 20px;
+    }
+    
+    .how-it-works .card-inner {
+        padding: 30px 20px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .steps-container {
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .step {
+        padding: 24px 16px;
+    }
+    
+    .step-title {
+        font-size: 20px;
+    }
+}
+
+/* Блок "Почему выбирают ProBalance" */
+.features {
+    padding: 60px 20px;
+    background: #f8faff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.features .card-inner {
+    background: white;
+    border-radius: 40px;
+    padding: 50px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.features .card-inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 48px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: #ffffff;
+    padding: 32px 24px;
+    border-radius: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05);
+    border-color: #e0e7ff;
+}
+
+.feature-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.feature-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.feature-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .features {
+        padding: 40px 20px;
+    }
+    
+    .features .card-inner {
+        padding: 30px 20px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .feature-card {
+        padding: 24px 20px;
+    }
+    
+    .feature-title {
+        font-size: 18px;
+    }
+}
+
+/* Блок призыва к действию */
+.cta {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cta .card-inner {
+    background: white;
+    border-radius: 40px;
+    padding: 60px 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta .card-inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+}
+
+.cta-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.cta-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto 32px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.btn-secondary:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.cta-note {
+    font-size: 14px;
+    color: #999;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .cta {
+        padding: 60px 20px;
+    }
+    
+    .cta .card-inner {
+        padding: 40px 24px;
+    }
+    
+    .cta-title {
+        font-size: 28px;
+    }
+    
+    .cta-description {
+        font-size: 16px;
+    }
+    
+    .btn {
+        padding: 12px 28px;
+        font-size: 15px;
+    }
+}
+
+/* Блок FAQ */
+.faq {
+    padding: 60px 20px;
+    background: #ffffff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faq .card-inner {
+    background: white;
+    border-radius: 40px;
+    padding: 50px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq .card-inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 48px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid #eaeef5;
+    margin-bottom: 8px;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+    color: #667eea;
+}
+
+.faq-icon {
+    font-size: 24px;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+    color: #667eea;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    padding: 0;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    padding-bottom: 20px;
+}
+
+.faq-answer p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .faq {
+        padding: 40px 20px;
+    }
+    
+    .faq .card-inner {
+        padding: 30px 20px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .faq-question {
+        font-size: 16px;
+        gap: 16px;
+    }
+    
+    .faq-answer p {
+        font-size: 14px;
+    }
+}
+
+
+/* Подвал */
+.footer {
+    background: #111827;
+    color: #9ca3af;
+    padding: 60px 20px 30px;
+    margin-top: 60px;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #1f2937;
+}
+
+/* Логотип и описание */
+.footer-brand {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-logo {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 12px;
+}
+
+.footer-tagline {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+/* Ссылки */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+}
+
+.footer-column h4 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    margin-bottom: 12px;
+}
+
+.footer-column a {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #667eea;
+}
+
+/* Соцсети */
+.social-links li {
+    margin-bottom: 12px;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Нижняя часть */
+.footer-bottom {
+    text-align: center;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .footer {
+        padding: 40px 20px 20px;
+        margin-top: 40px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-brand {
+        text-align: center;
+    }
+    
+    .footer-links {
+        justify-content: space-between;
+        gap: 30px;
+    }
+    
+    .footer-column {
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .footer-column h4 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+    }
+    
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .social-links li {
+        margin-bottom: 0;
+    }
+}
+
+/* Блок "Кем разработано" */
+.team {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.team .card-inner {
+    background: white;
+    border-radius: 40px;
+    padding: 50px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team .card-inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 48px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+.team-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.team-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.team-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 32px;
+}
+
+.team-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #666;
+}
+
+.team-member-card {
+    flex: 1;
+    min-width: 280px;
+    background: #f9fafc;
+    border-radius: 24px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.team-member-card:hover {
+    transform: translateY(-5px);
+    background: #ffffff;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.05);
+}
+
+.member-avatar {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.member-info h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.member-info p {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.member-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.member-link {
+    display: inline-block;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.member-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .team {
+        padding: 40px 20px;
+    }
+    
+    .team .card-inner {
+        padding: 30px 20px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .team-description {
+        font-size: 16px;
+    }
+    
+    .team-stats {
+        justify-content: center;
+    }
+    
+    .team-member-card {
+        padding: 24px;
+    }
+    
+    .member-info h3 {
+        font-size: 20px;
+    }
+}
+
+/* Блок-оглавление */
+.site-guide {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-guide .card-inner {
+    background: white;
+    border-radius: 40px;
+    padding: 50px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-guide .card-inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 48px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+/* Сетка ссылок */
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.guide-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 16px;
+    background: #f9fafc;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.guide-item:hover {
+    transform: translateY(-5px);
+    background: white;
+    border-color: #e0e7ff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.guide-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.guide-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.guide-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Блок с кнопкой */
+.guide-action {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid #eaeef5;
+}
+
+.guide-action-text {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.btn-guide {
+    display: inline-block;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    text-decoration: none;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+.btn-guide:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .site-guide {
+        padding: 40px 20px;
+    }
+    
+    .site-guide .card-inner {
+        padding: 30px 20px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .guide-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .guide-item {
+        flex-direction: row;
+        text-align: left;
+        gap: 16px;
+        padding: 16px;
+    }
+    
+    .guide-icon {
+        font-size: 32px;
+        margin-bottom: 0;
+    }
+    
+    .guide-title {
+        margin-bottom: 4px;
+    }
+    
+    .guide-action-text {
+        font-size: 16px;
+    }
+    
+    .btn-guide {
+        padding: 12px 28px;
+        font-size: 15px;
+    }
+}

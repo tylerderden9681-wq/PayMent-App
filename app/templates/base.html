@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <title>ProBalance - {% block title %}Финансовый учёт{% endblock %}</title>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <a href="/" class="logo">ProBalance</a>
+            <span class="tagline">Финансовый учёт без сложностей</span>
+        </div>
+        <div class="navbar-buttons">
+            {% if request.cookies.get('user_id') %}
+                <span class="user-name">{{ request.cookies.get('username', 'Пользователь') }}</span>
+                <a href="/dashboard" class="btn btn--dashboard">Кабинет</a>
+                <a href="/api/v1/auth/logout" class="btn btn--logout">Выйти</a>
+            {% else %}
+                <a href="/login" class="btn btn--login">Войти</a>
+                <a href="/register" class="btn btn--register">Регистрация</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">ProBalance</h3>
+                    <p class="footer-tagline">Финансовый учёт без сложностей</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>О проекте</h4>
+                        <ul>
+                            <li><a href="#about">О нас</a></li>
+                            <li><a href="#how-it-works">Как это работает</a></li>
+                            <li><a href="#features">Преимущества</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Помощь</h4>
+                        <ul>
+                            <li><a href="#">Контакты</a></li>
+                            <li><a href="#">Поддержка</a></li>
+                            <li><a href="#">Политика конфиденциальности</a></li>
+                            <li><a href="#">Пользовательское соглашение</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Соцсети</h4>
+                        <ul class="social-links">
+                            <li><a href="#" class="social-link">GitHub</a></li>
+                            <li><a href="#" class="social-link">Telegram</a></li>
+                            <li><a href="#" class="social-link">YouTube</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ProBalance. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', path='/js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

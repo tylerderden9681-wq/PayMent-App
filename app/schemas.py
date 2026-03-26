@@ -16,7 +16,7 @@ class OperationSchema(BaseModel):
         clean_str = name.strip()
 
         if not clean_str:
-            raise HTTPException(status_code=400, detail='У кошелька должно быть свое имя, а не пробелы!!!')
+            raise HTTPException(status_code=422, detail='У кошелька должно быть свое имя, а не пробелы!!!')
 
         return clean_str
 
@@ -26,7 +26,7 @@ class OperationSchema(BaseModel):
     def amount_must_be_positive(cls, value: float) -> float:
         # Логика такая: нам нужно проверить, что amount >= 0 и возвратить значение если всё ок
         if value < 0:
-            raise HTTPException(status_code=400, detail='Amount must be positive or null')
+            raise HTTPException(status_code=422, detail='Amount must be positive or null')
         
         return value
     

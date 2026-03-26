@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<section class="site-guide">
+    <div class="container">
+        <div class="card-inner">
+            <h2 class="section-title">Навигация по сайту</h2>
+            <div class="guide-grid">
+                <a href="#about" class="guide-item"><span class="guide-icon">📖</span><span class="guide-title">О проекте</span><span class="guide-desc">Кто создал и для кого</span></a>
+                <a href="#how-it-works" class="guide-item"><span class="guide-icon">⚙️</span><span class="guide-title">Как это работает</span><span class="guide-desc">3 простых шага</span></a>
+                <a href="#features" class="guide-item"><span class="guide-icon">⭐</span><span class="guide-title">Преимущества</span><span class="guide-desc">Почему выбирают ProBalance</span></a>
+                <a href="#faq" class="guide-item"><span class="guide-icon">❓</span><span class="guide-title">FAQ</span><span class="guide-desc">Ответы на вопросы</span></a>
+                <a href="#team" class="guide-item"><span class="guide-icon">👨‍💻</span><span class="guide-title">Кем разработано</span><span class="guide-desc">О создателе проекта</span></a>
+            </div>
+            <div class="guide-action">
+                <p class="guide-action-text">Готовы начать контролировать свои финансы?</p>
+                <a href="/register" class="btn-guide">Попробовать бесплатно →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about-card">{% include "blocks/about.html" %}</section>
+<section id="how-it-works" class="how-it-works">{% include "blocks/how-it-works.html" %}</section>
+<section id="features" class="features">{% include "blocks/features.html" %}</section>
+<section id="cta" class="cta">{% include "blocks/cta.html" %}</section>
+<section id="team" class="team">{% include "blocks/team.html" %}</section>
+<section id="faq" class="faq">{% include "blocks/faq.html" %}</section>
+{% endblock %}
